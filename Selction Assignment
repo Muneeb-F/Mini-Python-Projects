@@ -1,0 +1,66 @@
+# Muneeb Farrukh 
+# Selection Assignment
+# This program consists of a Number to Letter Grade convertor(Question 1), a Response Generator (Question 2), and a Multiple Choice Question (Question 3). A function has been defined for each of them, and conditional statements are used to determine the output based on the user's input.
+
+# Grade Converter
+def question1():
+  outputstatement = "Your Letter Grade is "
+  grade = round(float(input("Please enter your number grade: ")))
+  if grade <0 or grade >100:
+    print ("Invalid Input. Please try again.")
+    question1()
+  elif grade <50:
+    print (outputstatement + "F")
+  elif grade <60:
+    print (outputstatement + "D")
+  elif grade <70:
+    print (outputstatement + "C")
+  elif grade <80:
+    print (outputstatement + "B")
+  elif grade <100:
+    print (outputstatement + "A")
+
+# Response Generator
+def question2():
+  print ("\n\nPlease choose one of the numbers and an appropriate response will be generated. \n\n 1. Print a greeting.\n 2. Print the name of an actor. \n 3. Print the name of a band. \n 4. Print the name of an animated character.")
+  response = int(input("\nPlease enter the number you want to choose: "))
+  if response == 1:
+    print("Have a Great Day!")
+  elif response == 2:
+    print("Dwayne \"The Rock\" Johnson")
+  elif response == 3:
+    print("The Beatles")
+  elif response == 4:
+    print("Lightning McQueen")
+  else: 
+    print ("Invalid Input. Please try again.")
+    question2()
+
+# Multiple Choice Question
+def question3():
+  print("\n\nA man lives in a circle house, and has a chef, a maid, a guard and a gardener. Today, after returning home from work, he noticed that his TV was broken. The man asked who broke the TV. The chef said that he was cooking in the kitchen. The maid says she was dusting the corners of the house. The guard said he was guarding the front door. The gardener said he was watering the plants. Who broke the TV?")
+  print(" a) The Chef \n b) The Maid \n c) The Guard \n d) The Gardener")
+  answer = str(input("Please choose an option: "))
+  if answer == "a" or answer == "c" or answer == "d":
+    print("Incorrect!\n\nWould you like to try again?\n Enter 1 for Yes \n Enter 2 for No")
+    redo = int(input("Please Enter 1 or 2: "))
+    if redo == 1:
+      question3()
+    else: 
+      print("Ok, Thanks for trying!")
+  elif answer == "b":
+    print("Correct! The house is circular, so there are no corners which means the maid was lying!")
+  else:
+    print("Invalid Input. Please try again.")
+    question3()
+  
+#Main Function 
+def main():
+
+  question1()
+  
+  question2()
+
+  question3()
+
+main()

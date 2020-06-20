@@ -1,0 +1,20 @@
+# Muneeb Farrukh
+# This program simulates a dice game in which 2 dice are rolled and the user gets a point if the sum of the dice is 7 or 11. The game ends when the user has 10 points. 
+
+import random
+from random import randint  
+
+print("Numbers"," "*3,"Sum"," "*3,"Wins"," "*4,"Games")
+games = 0 
+wins = 0
+while wins <= 10:
+  dice1 = randint(1,6) 
+  dice2 = randint(1,6)
+  dtotal = dice1 + dice2
+  if dtotal == 7 or dtotal == 11:
+    wins += 1
+  print("",dice1," ",dice2, " "*(6-len(str(dtotal))), dtotal, " "*(6-len(str(wins))),wins, " "*(9-len(str(games))), games)
+  if wins == 10:
+    break  
+  games += 1
+print("You scored 10 times out of",games)

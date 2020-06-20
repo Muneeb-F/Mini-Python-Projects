@@ -1,0 +1,20 @@
+
+import math
+print ("Postage Price Calculator\n")
+#Lines 9-10 Ask the user to input the weight of their letter and assigns it to a variable
+print ("Please enter the weight of your letter in grams")
+weight = float(input())
+#Lines 12-17 Are part of a conditional statement which calculate the cost of the letter if the weight is <= 100 grams.
+if (weight <= 30):
+  print ("The postage cost for your letter is $0.48")
+elif (weight <= 50):
+  print ("The postage cost for your letter is $0.70")
+elif (weight <= 100):
+  print ("The postage cost for your letter is $0.90")
+#Lines 19-24 Calculate the cost of the letter if it is >100 grams.  
+elif (weight > 100): 
+  tweight = math.ceil(weight/50)
+  tweight = (tweight - 2)
+  postage = (.90 + (tweight * .18))
+  postage = str(postage)  
+  print("The postage cost for your letter is $" + postage)

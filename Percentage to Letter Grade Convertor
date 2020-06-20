@@ -1,0 +1,27 @@
+# Muneeb Farrukh
+# Percentage to Letter Grade Convertor .py
+# This program converts a user's percentage mark to a letter grade and then outputs it.
+
+def percentageConvertor():
+  print ("Percentage to Letter Grade Convertor\n")
+  # Lines 8-9 Ask the User to input their mark percentage and assign it to a variable.
+  print ("Please enter your percentage")
+  mark = float(input())
+  #Line 11 Rounds the mark to 2 decimal places
+  mark = round(mark,2)
+  # Lines 12-24 Are part of a conditional statement which calculate and output the letter grade which corresponds to the user's percentage.  
+  if(mark > 100):
+    print ("Invalid Entry. Please restart the program and try again\n")
+    percentageConvertor()
+  elif (mark >= 80):
+    print ("Your Mark is an A") 
+  elif(mark >= 70):
+    print ("Your Mark is a B")
+  elif(mark >= 60):
+    print ("Your Mark is a C")
+  elif(mark >= 50):
+    print ("Your Mark is a D")
+  elif(mark < 50):
+    print ("Your Mark is an F")
+
+percentageConvertor()

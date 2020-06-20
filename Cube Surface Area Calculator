@@ -1,0 +1,12 @@
+# Muneeb Farrukh
+# Cube Surface Area Calculator.py
+# This program calculates the surface area of a cube using a user-inputted side length.
+
+print ("Cube Surface Area Calculator\n")
+#Lines 8-9 Ask the user to input the side length of the cube and store the value in a variable.
+print ("Please enter the side length of the cube")
+slength = float(input())
+#Lines 11-13 Calculate the surface area of the cube and then output it.
+sfarea = (6 * slength ** 2) 
+sfarea = str(sfarea)
+print ("The surface area of the cube is " + sfarea)

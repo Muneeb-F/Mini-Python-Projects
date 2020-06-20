@@ -1,0 +1,115 @@
+# Muneeb Farrukh
+# This program can store a patient's name, height and weight. It can then calculate the patient's BMI and output it. It works for as many patients as the user wants. 
+
+import os
+
+#main function
+def main():
+  patientFile = open("patientInfo.txt","a")
+  #This is used to check to see if a header needs to be written, or not.
+  patientFile = open("patientInfo.txt",'r+')
+  size = os.path.getsize("patientInfo.txt")
+  if size == 0:
+    patientFile.write("[Name,Height(m),Weight(kg),BMI]")
+    patientFile.close()
+  else:
+    patientFile.close()   
+  #This function asks the user whether they want to add a new patient to the directory, calculate an existing patient's BMI, or view the directory.
+  def start():
+    print("Welcome to the Patient Directory and BMI Calculator\n\n1)Add a Patient\n2)Calculate an existing Patient\'s BMI\n3)View Directory\n")
+    ans1 = input("Please enter 1, 2 or 3: ")
+    if ans1 == '1':
+      addPatient()
+    elif ans1 == '2':
+      BMIcalculator()
+    elif ans1 == '3':
+      patientFile = open("patientInfo.txt",'r')
+      directory = patientFile.read()
+      print(directory)
+    else:
+      print("Invalid Input. Please try again.\n")
+      start()
+# This function is called if the user wants to add a patient to the directory. 
+  def addPatient():
+    #The user is asked to enter the patient's information.
+      name = input("\nPlease enter the patient's name: ")
+      height = float(input("Please enter " + name + "\'s height in metres: "))
+      weight = float(input("Please enter " + name + "\'s weight in kg: "))
+      #The patient's information is added to a list.
+      listToWrite = []
+      listToWrite.append(name)
+      listToWrite.append(height)
+      listToWrite.append(weight)
+      listToWrite.append(float(format((weight/height**2),".2f")))
+      #A text file is opened to be appended to.
+      patientFile = open("patientInfo.txt",'a')
+      #The patient's information is added to the text file and then the file is closed.
+      patientFile.write("\n")
+      patientFile.write(str(listToWrite))
+      patientFile.close()
+      #The user is asked if they want to add another patient.
+      addAnotherPatient()
+#This function is called if the user wants to add an additional patient.
+  def addAnotherPatient():
+      print("\nWould you like to add another patient?\n1)Yes\n2)No")
+      ans2 = input("Please Enter 1 or 2: ")
+      if ans2 == '1':
+        addPatient()
+      elif ans2 == '2':
+        def askAboutBMI():
+          print("\nWould you like to calculate a patient's BMI?\n1)Yes\n2)No")
+          ans3 = input("Please Enter 1 or 2:")
+          if ans3 == '1':
+            BMIcalculator()
+          elif ans3 == '2':
+            print("\nAlright, Thank you for using this program. Have a nice day!")
+          else: 
+            print("Invalid Input. Please try again")
+            askAboutBMI()  
+        askAboutBMI()  
+      else:
+        print("Invalid Input. Please try again")
+        addAnotherPatient()
+#This function is called when the user wants to calculate a patient's BMI. 
+  def BMIcalculator():
+    #An empty list is created
+    patientDetails = []
+    #The user id asked which patient's BMI they would like to calculate.
+    findPatient = str(input("\nWhich Patient's BMI do you want to calculate?: "))
+    #The text file containing the patient directory is opened to read.
+    patientFile = open("patientInfo.txt","r")
+    #The program finds the patient requested by the user
+    for Line in patientFile:
+      if findPatient in Line:
+        patientDetails = eval(Line)
+        #When the requested patient's information is found, their BMI is calculated.
+        patientBMI = float(patientDetails[2])/float((patientDetails[1])**2)
+        patientBMI = format((patientBMI),".2f")
+        #The patient's BMI and corresponding condition is outputted. 
+        if float(patientBMI) <= 18.5:
+          print(findPatient + "\'s BMI is " + str(patientBMI) + " which means " + findPatient + " is underweight.")
+        elif float(patientBMI) > 18.5 and float(patientBMI) < 25:
+          print(findPatient + "\'s BMI is " + str(patientBMI) + " which means " + findPatient + " is normal.")
+        elif float(patientBMI) > 25 and float(patientBMI) < 30:
+          print(findPatient + "\'s BMI is " + str(patientBMI) + " which means " + findPatient + " is overweight.")
+        elif float(patientBMI) > 30:
+          print(findPatient + "\'s BMI is " + str(patientBMI) +" which means " + findPatient + " is obese.")   
+    patientFile.close()
+    #The user is asked if they want to calculate another patient's BMI.
+    AdditonalBMI()
+#This function is called if the user wants to calculate another patient's BMI.
+  def AdditonalBMI():      
+      print("\nWould you calculate another patient's BMI?:\n1)Yes\n2)No")
+      ans4 = input("Please Enter 1 or 2: ")
+      if ans4 == '1':
+        BMIcalculator()
+      #If the user does not want to calculate another person's BMI, the program stops running and outputs a greeting.
+      elif ans4 == '2':
+        print("\nAlright, Thank you for using this program. Have a nice day!")
+      else:
+        print("\nInvalid Entry. Please try again.")
+        AdditonalBMI()
+  #start() is called to start the program
+  start()
+  
+main()      
